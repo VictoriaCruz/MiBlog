@@ -13,7 +13,7 @@ class Blog extends CI_Controller
     {
         
     
-        $this->load->view('iniciar_sesion');
+        $this->load->view('vista_simple');
     }
 
     function principal()

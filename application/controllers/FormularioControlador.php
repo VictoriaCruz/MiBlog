@@ -1,4 +1,6 @@
 <?php
+
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class FormularioControlador extends CI_Controller {
@@ -9,10 +11,7 @@ class FormularioControlador extends CI_Controller {
 		$this->load->model('db_model');
 	}
 
-   public function error()
-{
-	echo "ocurrio un error";
-}	
+  
 	
 
 	public function insertar_comentarios()
@@ -25,14 +24,17 @@ class FormularioControlador extends CI_Controller {
         if (!$this->form_validation->run())
 			{
 				
-				$this->error();
+				$data['message_display'] = 'El comentario no se registro';
+				$this->load->view('principal_view',$data);
 			}
 			//si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
 			else 
 			{
 				$data = array (
     				'entry_name' => $this->input->post('titulo'),
-    				'entry_body' => $this->input->post('textComentario')
+    				'entry_body' => $this->input->post('textComentario'),
+    				'date' => DATE('Y-m-d'),
+    				'user' => $this->session->userdata['logged_in']['usuario']
     				);					
 				 $this->db_model->nuevo_comentario('entry',$data);
 			}

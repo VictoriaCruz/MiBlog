@@ -1,23 +1,55 @@
+<?php
+if (isset($this->session->userdata['logged_in'])) {
+
+header("location: http://miproyectoprueba.com/controllers/Usuarios_autenticacion/proceso_registro");
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="/assets/css/" type="text/css" />
 	<title>Inicia sesion</title>
 </head>
-<body>
-<div style="position:absolute; top:300px; left:600px;">
-	<form name="inicio_sesion" method="post" action="<?php echo base_url() ?>usuarios/iniciar_sesion_post">
-		<label for="nombre">Nombre:</label>
-		<br>
-		<input type="text" name="nombre" placeholder="Tu nombre de usuario">
-		<br>
-		<label for="password">Password:</label>
-		<br>
-		<input type="password" name="password" placeholder="****">
-		<input type="submit" name="enviar" value="Enviar">
-	</form>
-	<!-- <?php //if ($error): ?>
-    <p> <?php //echo $error ?> </p>   
-    <?php //endif; ?> -->
+<body>  <!--
+<?php
+/*if (isset($logout_message)) {
+echo "<div class='message'>";
+echo $logout_message;
+echo "</div>";
+} */
+?> -->
+<?php
+if (isset($message_display)) {
+echo "<div class='message'>";
+echo $message_display;
+echo "</div>";
+}
+?> 
+
+<div id="main">
+<div id="login">
+<h2>Inicia Sesion</h2>
+<hr/>
+<?php echo form_open('Usuarios_autenticacion/proceso_registro'); ?>
+<?php
+echo "<div class='error_msg'>";
+if (isset($error_message)) {
+echo $error_message;
+}
+echo validation_errors();
+echo "</div>";
+?>
+<label>Usuario :</label>
+<input type="text" name="usuario" id="name" placeholder="nombre de usuario"/><br /><br />
+<label>Password :</label>
+<input type="password" name="password" id="password" placeholder="**********"/><br/><br />
+<input type="submit" value=" Login " name="submit"/><br />
+<?php echo anchor('Usuarios_autenticacion/mostrar_registrar','No estas registrado? Haz click aqui'); ?>
+<?php echo form_close(); ?>
 </div>
+</div>
+
 </body>
 </html>
