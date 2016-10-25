@@ -9,17 +9,10 @@ header("location: http://miproyectoprueba.com/controllers/Usuarios_autenticacion
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="/assets/css/" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
 	<title>Inicia sesion</title>
 </head>
-<body>  <!--
-<?php
-/*if (isset($logout_message)) {
-echo "<div class='message'>";
-echo $logout_message;
-echo "</div>";
-} */
-?> -->
+<body> 
 <?php
 if (isset($message_display)) {
 echo "<div class='message'>";

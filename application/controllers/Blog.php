@@ -12,12 +12,14 @@ class Blog extends CI_Controller
     function index()
     {
         
-    
+        $this->load->view('header');
         $this->load->view('vista_simple');
     }
 
     function principal()
+
     {
+        $this->load->view('header');
         $this->load->view('principal_view');
     }
 

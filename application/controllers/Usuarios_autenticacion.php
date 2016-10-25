@@ -73,6 +73,8 @@ class Usuarios_autenticacion extends CI_Controller
 		{
 			if(isset($this->session->userdata['logged_in']))
 			{
+
+            $this->load->view('header');
 			$this->load->view('principal_view');
 		    }
 			else{
@@ -98,6 +100,8 @@ class Usuarios_autenticacion extends CI_Controller
 			'email' => $result[0]->email,);
 			// Add user data in session
 			$this->session->set_userdata('logged_in', $session_data);
+
+            $this->load->view('header');
 			$this->load->view('principal_view');
 			}
     	 } 
@@ -117,8 +121,7 @@ class Usuarios_autenticacion extends CI_Controller
 			'usuario' => '');
 
 		$this->session->unset_userdata('logged_in',$sess_array);
-		
-		$this->load->view('vista_simple');
+		redirect('Blog/index',refresh);
 
 
 	}
