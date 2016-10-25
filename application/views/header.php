@@ -14,11 +14,13 @@ $email = ($this->session->userdata['logged_in']['email']);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
-    <title>Mi Blog</title>
+    
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
-    <link href="<?php echo base_url() ?>assets/css/header.css"" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/header.css" rel="stylesheet">
+
+    <title>Mi Blog</title>
     </head>
     <body class="body-top">
    

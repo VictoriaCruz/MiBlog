@@ -20,11 +20,15 @@ class FormularioControlador extends CI_Controller {
     public function post($id = '')
     {
       $fila=  $this->db_model->obtener_post($id);
-      echo $fila->entry_name . "<br>";
+
+
+      $data = array($fila->entry_name,$fila->entry_body,$fila ->date,$fila->user);
+      $this->load->view('post');
+     /* echo $fila->entry_name . "<br>";
       echo $fila->entry_body . "<br>";
       echo $fila->date . "<br>";
       echo $fila->user . "<br>";
-
+      */
     }
    
 	public function insertar_comentarios()
@@ -32,6 +36,7 @@ class FormularioControlador extends CI_Controller {
 
 		//var_dump($_FILES['imagen']);exit;
         $this->form_validation->set_rules('titulo','Titulo','trim|required');
+        $this->form_validation->set_rules('descripcion','Descripcion','trim|required');
         $this->form_validation->set_rules('textComentario','Comentario','trim|required');
 
 
@@ -66,6 +71,7 @@ class FormularioControlador extends CI_Controller {
 
 				$data = array (
     				'entry_name' => $this->input->post('titulo'),
+    				'description' => $this->input->post('descripcion'),
     				'entry_body' => $this->input->post('textComentario'),
     				'date' => DATE('Y-m-d'),
     				'user' => $this->session->userdata['logged_in']['usuario'],
