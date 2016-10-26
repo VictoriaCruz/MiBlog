@@ -27,7 +27,7 @@ header("location: iniciar_sesion");
       <input class="form-control" type="text" name="titulo">
 
       <label for="Descripcion">Dinos de que tratara tu post</label>
-      <input type="text" name="descripcion" placeholder="da una breve descripcion">
+      <input type="text" name="descripcion" class="form-control" placeholder="Da una breve descripcion">
 
       <label for="comentario">Contenido:</label>
       <textarea name="textComentario" rows="15" cols="70"></textarea>

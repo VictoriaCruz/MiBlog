@@ -7,16 +7,16 @@
 </head>
 <body >
 
-   <!--<div style="position:absolute; top:500px;left:1200px;">
+   <div style="position:absolute; top:50px;left:1200px;">
   
-   	<p>Te gustaria hacer un post?<?php // echo anchor('Usuarios_autenticacion/mostrar_iniciar','Inicia Sesion'); ?></p>
+   	<p>Te gustaria hacer un post?<?php  echo anchor('Usuarios_autenticacion/mostrar_iniciar','Inicia Sesion'); ?></p>
    </div>
-<div style="position:absolute;left:1200px;top:350px">
+<div style="position:absolute;left:1200px;top:80px">
    <p>Para ver los posts, crear nuevos <br>
      y comentar inicia sesion y se parte de <br>
       todo lo que hay! </p>
  </div>
--->
+
  
 
  <div class="container">

@@ -21,14 +21,15 @@ class FormularioControlador extends CI_Controller {
     {
       $fila=  $this->db_model->obtener_post($id);
 
+      $data['titulo'] = $fila->entry_name;
+      $data['descripcion']=$fila->description;
+      $data['contenido']=$fila->entry_body;
+      $data['fecha']=$fila->date;
+      $data['usuario']=$fila->user;
+      $data['img']=$fila->img;
 
-      $data = array($fila->entry_name,$fila->entry_body,$fila ->date,$fila->user);
-      $this->load->view('post');
-     /* echo $fila->entry_name . "<br>";
-      echo $fila->entry_body . "<br>";
-      echo $fila->date . "<br>";
-      echo $fila->user . "<br>";
-      */
+      $this->load->view('post',$data);
+    
     }
    
 	public function insertar_comentarios()
@@ -67,7 +68,7 @@ class FormularioControlador extends CI_Controller {
                         
                        
                 }
-           }
+            }
 
 				$data = array (
     				'entry_name' => $this->input->post('titulo'),
@@ -83,6 +84,40 @@ class FormularioControlador extends CI_Controller {
 
                   	redirect('Blog/principal',refresh);
 	}
+
+
+
+	public function comentar()
+	{
+		$this->form_validation->set_rules('comentario','Comentario','trim|required');
+        $id =$this->input->post('id');
+         if (isset($this->session->userdata['logged_in'])) 
+            {
+				$usuario = ($this->session->userdata['logged_in']['usuario']);
+				$email = ($this->session->userdata['logged_in']['email']);
+			} else {
+				$usuario = '';
+				$email = '';
+				} 
+         
+          if(!empty($usuario))
+          {
+          $datos = array('entry_id' => $this->input->post('id'),
+          	             'comentario' => $this->input->post('comentario'),
+          	             'usuario' =>  $this->session->userdata['logged_in']['usuario'],
+          	             'fecha' => DATE('Y-m-d'));
+
+          
+		$this->db_model->comentar('comentarios',$datos);
+		echo "comentario hecho";
+		}else
+		   {
+		   	echo "hay que iniciar sesion";
+          //$data['error'] = 'Para comentar hay que iniciar sesion';
+         // redirect('FormularioControlador/post/'.$id , $data);
+		   }
+	     
+    }
 
 }
 ?>

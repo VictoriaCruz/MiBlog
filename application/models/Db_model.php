@@ -25,15 +25,18 @@ class Db_model extends CI_Model{
     } 
 
 
-    public function obtener_id($data)
+    public function obtener_id($usuario,$titulo)
     {
 
-        $titulo = $data['entry_name'];
-        
-        $autor = $data['user'];
+        $query = $this->db->query("SELECT entry_id FROM entry WHERE entry_name = ' ".$titulo. "'and user = '".$usuario."'");
+        return $query->result();
+    }
 
-        $query = $this->db->query("SELECT entry_id FROM entry WHERE entry_name = $titulo and user = $autor");
-        return $query;
+
+
+    public function comentar($tabla,$datos)
+    {
+       return $this->db->insert($tabla,$datos);
     }
 
    
