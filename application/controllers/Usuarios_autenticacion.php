@@ -56,7 +56,7 @@ class Usuarios_autenticacion extends CI_Controller
 			}
 			else
 			{
-				$data['message_display'] = 'oops.. verifica los datos';
+				$data['message_display'] = 'oops.. ya existe un usuario asi';
 				$this->load->view('registrar_form',$data);
 			}
 		}

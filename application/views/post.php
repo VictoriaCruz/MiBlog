@@ -1,10 +1,10 @@
 <?php
 if (isset($this->session->userdata['logged_in'])) 
 {
-$usuario = ($this->session->userdata['logged_in']['usuario']);
+$usuario_log = ($this->session->userdata['logged_in']['usuario']);
 $email = ($this->session->userdata['logged_in']['email']);
 } else {
-	$usuario = '';
+	$usuario_log = '';
 	$email = '';
 }
 ?>
@@ -27,9 +27,10 @@ $email = ($this->session->userdata['logged_in']['email']);
 
                     <h2><?php echo "$titulo"; ?></h2>
                     <div class="body-text">
-
-                        <p class='text-muted ubuntu'>Por: <?php echo "$usuario"; ?> | <?php echo "$fecha"; ?></p>
+                        
+                        <p class='text-muted ubuntu'>Por: <?php echo $usuario; ?> | <?php echo "$fecha"; ?></p>
                         <br>
+                          <p><?php echo "$descripcion";?></p>
                         <div class="row">
                             <div class="col-lg-6"><p><?php echo "$contenido"; ?></p></div>
                             <div class="col-lg-6"><p class=""><img alt="image" src="http://startupcentral.in/wp-content/uploads/2013/09/280x183xideabulb1.jpg.pagespeed.ic.gyJk5j8KnN.jpg" width="100%"></p></div>
@@ -41,31 +42,34 @@ $email = ($this->session->userdata['logged_in']['email']);
                         <br/>
                         <p>Gracias por visitar mi Post!</p>
                         <hr>
-               
-
+                 <h1> Comentarios </h1>
+                 <hr>
+          
+         <div class="comments-list">
+         <?php 
+         $id  = $this->uri->segment(3);
+         $query = $this->db->where("entry_id","$id");
+         $query = $this->db->get('comentarios');
+         foreach($query -> result() as $row): ?>
+         <div class="media-body">
+         <h4 class="media-heading user_name"><?php   echo $row-> usuario;?></h4>
+         <?php    echo $row-> comentario; ?>
+         </div> 
+          <p class="pull-right"><small><?php   echo $row-> fecha;?></small></p>  
+          <?php endforeach; ?>                        
+         </div>
+        <br><br>
                    <div>     
                    <?php echo form_open('FormularioControlador/comentar');  ?>
                    <label for="comentario">Comentario:</label>
-                   <input type="text" name="comentario" placeholder="opina algo ...">
+                   <input type="text" name="comentario" placeholder="opina algo ..." class="form-control">
                     <?=form_hidden('id',$this->uri->segment(3));?>
                    <br>
-                   <input type="submit" name="comentar" value="Comentar">
+                   <input type="submit" name="comentar" value="Comentar" class="btn btn-info">
                    <?php echo form_close();?>
                    </div>
-
-                     <?php echo "<div>";
-  			if (isset($error)) {
- 			  echo $error;
-   				 }
-   				echo "</div>"; ?>
                 </div>
-             
-              
-            
-
         </div>
         </div>
-
-
 </body>
 </html>

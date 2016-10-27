@@ -1,47 +1,59 @@
 <?php
 if (isset($this->session->userdata['logged_in'])) {
 
-header("location: http://miproyectoprueba.com/controllers/Usuarios_autenticacion/proceso_registro");
+header("location: http://proyectoprueba.com/controllers/Usuarios_autenticacion/proceso_registro");
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
-	<title>Inicia sesion</title>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/iniciosesion.css"">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<title>Iniciar Sesion</title>
 </head>
-<body> 
-<?php
-if (isset($message_display)) {
-echo "<div class='message'>";
-echo $message_display;
-echo "</div>";
-}
-?> 
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           
+            <div class="wrap">
+                <p class="form-title">
+                    Inicia Sesion  </p>
+                 <p class="form-title" >  <?php
+					if (isset($message_display)) {
+					echo "<div class='message'>";
+					echo $message_display;
+					echo "</div>";
+						} 
 
-<div id="main">
-<div id="login">
-<h2>Inicia Sesion</h2>
-<hr/>
-<?php echo form_open('Usuarios_autenticacion/proceso_registro'); ?>
-<?php
 echo "<div class='error_msg'>";
 if (isset($error_message)) {
 echo $error_message;
 }
 echo validation_errors();
 echo "</div>";
-?>
-<label>Usuario :</label>
-<input type="text" name="usuario" id="name" placeholder="nombre de usuario"/><br /><br />
-<label>Password :</label>
-<input type="password" name="password" id="password" placeholder="**********"/><br/><br />
-<input type="submit" value=" Login " name="submit"/><br />
-<?php echo anchor('Usuarios_autenticacion/mostrar_registrar','No estas registrado? Haz click aqui'); ?>
-<?php echo form_close(); ?>
+?> </p>
+ <form class="login" name="form" action="<?php base_url() ?>/Usuarios_autenticacion/proceso_registro" method="post">
+ <label for="Usuario">Usuario:</label>
+  <input type="text" placeholder="Usuario" name="usuario" />
+  <label for="pass">Contrase&ntilde;a</label>
+  <input type="password" placeholder="Contrase&ntilde;a" name="password" />
+  <input type="submit" value="Log in" class="btn btn-info btn-sm" name="submit" />
+  <div class="remember-forgot">
+  <div class="row">
+  <div class="col-md-6">
+ <label>
+ <?php echo anchor('Usuarios_autenticacion/mostrar_registrar','No estas registrado? Haz click aqui'); ?>
+ </label>
+ </div>
+                       
+ </div>
+  </div>
+ </form>
 </div>
+</div>
+    </div>
 </div>
 
 </body>

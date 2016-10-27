@@ -93,10 +93,10 @@ class FormularioControlador extends CI_Controller {
         $id =$this->input->post('id');
          if (isset($this->session->userdata['logged_in'])) 
             {
-				$usuario = ($this->session->userdata['logged_in']['usuario']);
+				$usuario_log = ($this->session->userdata['logged_in']['usuario']);
 				$email = ($this->session->userdata['logged_in']['email']);
 			} else {
-				$usuario = '';
+				$usuario_log = '';
 				$email = '';
 				} 
          
@@ -109,12 +109,11 @@ class FormularioControlador extends CI_Controller {
 
           
 		$this->db_model->comentar('comentarios',$datos);
-		echo "comentario hecho";
+		redirect('FormularioControlador/post/'.$id , refresh);
 		}else
 		   {
-		   	echo "hay que iniciar sesion";
-          //$data['error'] = 'Para comentar hay que iniciar sesion';
-         // redirect('FormularioControlador/post/'.$id , $data);
+		   	echo "<script>alert('Necesitas Iniciar Sesion para comentar.');</script>";
+          redirect('FormularioControlador/post/'.$id , refresh);
 		   }
 	     
     }

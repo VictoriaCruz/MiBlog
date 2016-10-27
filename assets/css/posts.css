@@ -1,10 +1,10 @@
-  .main
+           .main
             {
-                background:#F7BE81;
+                background:rgba(46,26,80,0.5);
             }
             body
             {
-                   background:#F7BE81;
+                background: url('../imagenes/colors.jpg') fixed;
                    margin:30px;
             }
             .ubuntu
@@ -21,30 +21,8 @@
                 font-family: 'Pacifico', sans-serif;
                 font-size: 2.4em;
             }
-            .twitter-follow
-            {
-
-                font-family: 'Ubuntu', sans-serif;
-                font-size:1.4em;
-                transition:all 0.2s ease-in;
-                /*                width:40px;*/
-                overflow:hidden;
-
-                white-space: nowrap;
-
-            }
-
-            .twitter-follow:hover
-            {
-                /*                color:#333;
-                                width:auto;
-                
-                                border-radius:1px;
-                
-                                background:#fff !important;
-                                border-bottom: 3px solid orangered;*/
-
-            }
+         
+            
 
             .header
             {
@@ -80,27 +58,4 @@
                 background:#fff;
             }
 
-            /*About Me*/
-            .media
-            {
-                /*box-shadow:0px 0px 4px -2px #000;*/
-                margin: 20px 0;
-                padding:30px;
-            }
-            .dp
-            {
-                border:10px solid #eee;
-                transition: all 0.2s ease-in-out;
-            }
-            .dp:hover
-            {
-                border:2px solid #eee;
-                transform:rotate(360deg);
-                -ms-transform:rotate(360deg);  
-                -webkit-transform:rotate(360deg);  
-                /*-webkit-font-smoothing:antialiased;*/
-            }
-            .aboutme
-            {
-                background:#FFEDDA;
-            }
+           
