@@ -11,17 +11,17 @@ header("location: iniciar_sesion");
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/header.css">
 	<title>Mi Blog</title>
 </head>
-<body background="<?php echo base_url();?>/assets/imagenes/">
-  
-  <div style="position:absolute; top:50px;left:1200px;">
-   	<p>
-       <a href="<?php echo base_url() ?>Usuarios_autenticacion/logout"> Cerrar sesi&oacute;n </a>
-    </p>
-   </div> 
+<body>
+
+ <div class="menu">
+ <label class="label label-info">Salir? <a href="<?php echo base_url() ?>Usuarios_autenticacion/logout"> Cerrar sesi&oacute;n </a></label>
+ <label class="label label-info">Crea un nuevo post! <a href="<?php echo base_url() ?>FormularioControlador/mostrar_formulario">Click aqui</a></label>
+ 
+ </div>
 
  
  <div class="container">
@@ -43,9 +43,6 @@ header("location: iniciar_sesion");
 
 
 
- <div style="position:absolute; top:90px;left:1200px;">
-   	<?php  echo anchor('FormularioControlador/mostrar_formulario','Crea un Nuevo Post!!'); ?>
-   </div>
 
 
  <?php echo "<div>";
