@@ -17,12 +17,11 @@ header("location: iniciar_sesion");
 </head>
 <body background="<?php echo base_url();?>/assets/imagenes/">
   
-   <div style="position:absolute; top:50px;left:1200px;">
+  <div style="position:absolute; top:50px;left:1200px;">
    	<p>
        <a href="<?php echo base_url() ?>Usuarios_autenticacion/logout"> Cerrar sesi&oacute;n </a>
     </p>
-   </div>
-
+   </div> 
 
  
  <div class="container">
@@ -45,15 +44,15 @@ header("location: iniciar_sesion");
 
 
  <div style="position:absolute; top:90px;left:1200px;">
-   	<?php echo anchor('FormularioControlador/mostrar_formulario','Crea un Nuevo Post!!'); ?>
+   	<?php  echo anchor('FormularioControlador/mostrar_formulario','Crea un Nuevo Post!!'); ?>
    </div>
 
 
  <?php echo "<div>";
-  if (isset($message_display)) {
+  if ( isset($message_display)) {
    echo $message_display;
     }
-   echo "</div>"; ?>
+  echo "</div>"; ?>
 
 </body>
 

@@ -1,27 +1,7 @@
 .body-top {
   padding-top: 80px;
-  background-image: url('../imagenes/pared.jpg');
+  background-image: url('../imagenes/fondo.jpg');
   background-size: cover; 
-}
-
-.body-bottom {
-  padding-top: 60px;
-
-  background-size: cover; 
-  
-}
-
-.header {
-  
-  background-size: cover; 
-  padding-top: 100px;
-
-}
-.header-top {
-  
-  background-size: cover; 
-  padding-top: 100px;
-
 }
 
     

@@ -56,6 +56,7 @@ $email = ($this->session->userdata['logged_in']['email']);
          <?php    echo $row-> comentario; ?>
          </div> 
           <p class="pull-right"><small><?php   echo $row-> fecha;?></small></p>  
+          <br>
           <?php endforeach; ?>                        
          </div>
         <br><br>

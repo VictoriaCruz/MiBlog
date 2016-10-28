@@ -14,7 +14,14 @@ class FormularioControlador extends CI_Controller {
 	{
 		$this->load->view('nuevo_post');
 	}
+  
 
+  public function mostrar_principal()
+  {
+
+      $this->load->view('header');
+      $this->load->view('principal_view');
+  }
  
 
     public function post($id = '')
@@ -89,19 +96,15 @@ class FormularioControlador extends CI_Controller {
 
 	public function comentar()
 	{
-		$this->form_validation->set_rules('comentario','Comentario','trim|required');
+    
+		$this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
         $id =$this->input->post('id');
-         if (isset($this->session->userdata['logged_in'])) 
-            {
-				$usuario_log = ($this->session->userdata['logged_in']['usuario']);
-				$email = ($this->session->userdata['logged_in']['email']);
-			} else {
-				$usuario_log = '';
-				$email = '';
-				} 
-         
-          if(!empty($usuario))
-          {
+        
+        if (!isset($this->session->userdata['logged_in'])) {
+
+       redirect('FormularioControlador/post/'.$id); 
+    }
+         else{     
           $datos = array('entry_id' => $this->input->post('id'),
           	             'comentario' => $this->input->post('comentario'),
           	             'usuario' =>  $this->session->userdata['logged_in']['usuario'],
@@ -109,14 +112,9 @@ class FormularioControlador extends CI_Controller {
 
           
 		$this->db_model->comentar('comentarios',$datos);
-		redirect('FormularioControlador/post/'.$id , refresh);
-		}else
-		   {
-		   	echo "<script>alert('Necesitas Iniciar Sesion para comentar.');</script>";
-          redirect('FormularioControlador/post/'.$id , refresh);
-		   }
-	     
-    }
+    redirect('FormularioControlador/post/'.$id );
+		}
 
+}
 }
 ?>

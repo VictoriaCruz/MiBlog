@@ -31,8 +31,8 @@ class Usuarios_autenticacion extends CI_Controller
 
 	public function registrar_nuevo()
 	{
-		$this->form_validation->set_rules('usuario','Usuario','trim|required');
-		$this->form_validation->set_rules('password','Password','trim|required');
+		$this->form_validation->set_rules('usuario','Usuario','trim|required|min_length[3]');
+		$this->form_validation->set_rules('password','Password','trim|required|min_length[5]');
 		$this->form_validation->set_rules('email','Email','trim|required');
 
 		if($this->form_validation->run() == FALSE)

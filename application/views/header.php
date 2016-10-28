@@ -1,8 +1,8 @@
 <?php
 if (isset($this->session->userdata['logged_in'])) 
 {
-$usuario = ($this->session->userdata['logged_in']['usuario']);
-$email = ($this->session->userdata['logged_in']['email']);
+$usuario = $this->session->userdata['logged_in']['usuario'];
+$email = $this->session->userdata['logged_in']['email'];
 } else {
 	$usuario = '';
 	$email = '';
@@ -27,11 +27,10 @@ $email = ($this->session->userdata['logged_in']['email']);
     <div class="container">
       <div class="jumbotron">
         <h1>Bienvenido a Blog!</h1>
-        <p class="lead">Hola <?php $usuario?>, mi nombre es Victoria y aqui podras postear sobre cualquier tema que te llame la atencion, cosas que te gustan, o lo que sea que quieras publicar! Empieza ya :)</p>
+        <p class="lead">Hola <?php echo "$usuario";?>, mi nombre es Victoria y aqui podras postear sobre cualquier tema que te llame la atencion, cosas que te gustan, o lo que sea que quieras publicar! Empieza ya :)</p>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="./dist/js/bootstrap.min.js"></script>
+   
   </body>
 </html>
 
