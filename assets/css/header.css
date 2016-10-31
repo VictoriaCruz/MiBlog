@@ -12,12 +12,14 @@
     letter-spacing: 1px;
     margin-bottom: 5px;
     outline: 0;
+    color:#fff;
 
 }
 
 .menu{
 	left:230px;
-	position: relative;
+	position: absolute;
+  top:360px;
 }
 
     

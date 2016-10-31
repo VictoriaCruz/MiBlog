@@ -43,18 +43,18 @@ class FormularioControlador extends CI_Controller {
 	{  
 
 		//var_dump($_FILES['imagen']);exit;
-        $this->form_validation->set_rules('titulo','Titulo','trim|required');
-        $this->form_validation->set_rules('descripcion','Descripcion','trim|required');
+        $this->form_validation->set_rules('titulo','Titulo','trim|required|min_length[3]');
+        $this->form_validation->set_rules('descripcion','Descripcion','trim|required|min_length[15]');
         $this->form_validation->set_rules('textComentario','Comentario','trim|required');
 
 
 
 	
-        if (!$this->form_validation->run())
+        if ($this->form_validation->run() == FALSE)
 			{
 				
-				$data['message_display'] = 'El comentario no se registro';  
-				$this->load->view('nuevo_post',$data);
+				//$data['message_display'] = 'El comentario no se registro';  
+				$this->load->view('nuevo_post');
 			}
 			//si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
 			else 
@@ -68,14 +68,14 @@ class FormularioControlador extends CI_Controller {
                 if (!($this->upload->do_upload('imagen')))
                 {
                         $error =  $this->upload->display_errors();
-                      echo $error;
+                      //echo $error;
                 }
                 else{
                          $this->upload->data('file_name');
                         
                        
                 }
-            }
+            
 
 				$data = array (
     				'entry_name' => $this->input->post('titulo'),
@@ -86,10 +86,10 @@ class FormularioControlador extends CI_Controller {
     				'img' =>$this->upload->data('file_name'));	
 
 				 $this->db_model->nuevo_comentario('entry',$data);
-              
-              
+       redirect('Blog/principal',refresh);       
+      }
+                  	
 
-                  	redirect('Blog/principal',refresh);
 	}
 
 
