@@ -19,8 +19,9 @@ class Blog extends CI_Controller
     function principal()
 
     {
+        $query = $this->db->get('entry');
         $this->load->view('header');
-        $this->load->view('principal_view');
+        $this->load->view('principal_view', ['query' => $query]);
     }
 
  

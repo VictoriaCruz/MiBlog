@@ -83,7 +83,7 @@ class FormularioControlador extends CI_Controller {
 
          $this->email_sender->enviarEmail();
 
-       redirect('Blog/principal',refresh);       
+       redirect('Blog/principal');     
       }
                   	
 

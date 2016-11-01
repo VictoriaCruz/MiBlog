@@ -33,7 +33,7 @@ $email = ($this->session->userdata['logged_in']['email']);
                           <p><?php echo "$descripcion";?></p>
                         <div class="row">
                             <div class="col-lg-6"><p><?php echo "$contenido"; ?></p></div>
-                            <div class="col-lg-6"><p class=""><img alt="image" src="http://proyectoprueba.com/upload/<?php echo $img; ?>" width="100%"></p></div>
+                            <div class="col-lg-6" id='img'><p class=""><?php echo strlen($img) == 0 ? '' : "<img alt='image' src='http://proyectoprueba.com/upload/".$img."' width='100%'>"; ?></p></div>
                         </div>
 
                         <br/>
