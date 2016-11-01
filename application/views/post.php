@@ -40,7 +40,7 @@ $email = ($this->session->userdata['logged_in']['email']);
                         
                     </div>
                         <br/>
-                        <p>Gracias por visitar mi Post!</p>
+                        <p>Gracias por visitar mi Post! <b>Para comentar tienes que inicar sesion</b></p>
                         <hr>
                  <h1> Comentarios </h1>
                  <hr>

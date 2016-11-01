@@ -7,6 +7,7 @@ class FormularioControlador extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+    $this->load->library('email_sender');
 		$this->load->model('db_model');
 	}
 
@@ -47,19 +48,14 @@ class FormularioControlador extends CI_Controller {
         $this->form_validation->set_rules('descripcion','Descripcion','trim|required|min_length[15]');
         $this->form_validation->set_rules('textComentario','Comentario','trim|required');
 
-
-
-	
         if ($this->form_validation->run() == FALSE)
-			{
-				
-				//$data['message_display'] = 'El comentario no se registro';  
+			{ 
 				$this->load->view('nuevo_post');
 			}
 			//si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
 			else 
 			{
-                 $config['upload_path'] = 'upload/';
+                $config['upload_path'] = 'upload/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                
                 $this->load->library('upload', $config);
@@ -71,21 +67,22 @@ class FormularioControlador extends CI_Controller {
                       //echo $error;
                 }
                 else{
-                         $this->upload->data('file_name');
-                        
-                       
+                         $this->upload->data('file_name');         
                 }
             
 
 				$data = array (
     				'entry_name' => $this->input->post('titulo'),
-    				'description' => $this->input->post('descripcion'),
+    				'description'=> $this->input->post('descripcion'),
     				'entry_body' => $this->input->post('textComentario'),
     				'date' => DATE('Y-m-d'),
     				'user' => $this->session->userdata['logged_in']['usuario'],
     				'img' =>$this->upload->data('file_name'));	
 
 				 $this->db_model->nuevo_comentario('entry',$data);
+
+         $this->email_sender->enviarEmail();
+
        redirect('Blog/principal',refresh);       
       }
                   	
@@ -97,23 +94,26 @@ class FormularioControlador extends CI_Controller {
 	public function comentar()
 	{
     
-		$this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
-        $id =$this->input->post('id');
-        
-        if (!isset($this->session->userdata['logged_in'])) {
-
-       redirect('FormularioControlador/post/'.$id); 
-    }
-         else{     
-          $datos = array('entry_id' => $this->input->post('id'),
-          	             'comentario' => $this->input->post('comentario'),
-          	             'usuario' =>  $this->session->userdata['logged_in']['usuario'],
-          	             'fecha' => DATE('Y-m-d'));
-
+  		$this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
+          $id =$this->input->post('id');
           
-		$this->db_model->comentar('comentarios',$datos);
-    redirect('FormularioControlador/post/'.$id );
-		}
+          if (!isset($this->session->userdata['logged_in'])) {
+
+         redirect('FormularioControlador/post/'.$id); 
+      }
+           else{     
+            $datos = array('entry_id' => $this->input->post('id'),
+            	             'comentario' => $this->input->post('comentario'),
+            	             'usuario' =>  $this->session->userdata['logged_in']['usuario'],
+            	             'fecha' => DATE('Y-m-d'));
+
+            
+  		 $this->db_model->comentar('comentarios',$datos);
+
+       $this->email_sender->enviarEmail();
+
+      redirect('FormularioControlador/post/'.$id );
+  		}
 
 }
 }

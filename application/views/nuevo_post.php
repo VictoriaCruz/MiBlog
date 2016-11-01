@@ -18,9 +18,9 @@ header("location: iniciar_sesion");
 	<title>Nuevo Post</title>
 </head>
 <body class="body-top">
-<div style="position:absolute;left:900px;top:50px">
-  <a href="<?php echo base_url() ?>FormularioControlador/mostrar_principal"><img src="<?php base_url()?>/assets/imagenes/home.png"></a>
-</div>
+  <!-- <div style="position:absolute;left:900px;top:50px">
+    <a href="<?php //echo base_url() ?>FormularioControlador/mostrar_principal"><img src="<?php //base_url()?>/assets/imagenes/home.png"></a>
+   </div> -->
  <!--<?php   //echo form_open_multipart('FormularioControlador/insertar_comentarios');?> -->
     <div  style="position:absolute;top:100px;left:200px;">
    <form method="post" id="nuevoPost" action ="<?php echo base_url() ?>FormularioControlador/insertar_comentarios" enctype="multipart/form-data" >

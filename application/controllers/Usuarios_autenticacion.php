@@ -121,7 +121,7 @@ class Usuarios_autenticacion extends CI_Controller
 			'usuario' => '');
 
 		$this->session->unset_userdata('logged_in',$sess_array);
-		redirect('Blog/index',refresh);
+		redirect('Blog/index');
 
 
 	}
