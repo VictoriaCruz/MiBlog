@@ -73,9 +73,8 @@ class Usuarios_autenticacion extends CI_Controller
 		{
 			if(isset($this->session->userdata['logged_in']))
 			{
-
-            $this->load->view('header');
-			$this->load->view('principal_view');
+              redirect('Blog/principal');
+           
 		    }
 			else{
 			$this->load->view('iniciar_sesion');
@@ -100,9 +99,8 @@ class Usuarios_autenticacion extends CI_Controller
 			'email' => $result[0]->email,);
 			// Add user data in session
 			$this->session->set_userdata('logged_in', $session_data);
-
-            $this->load->view('header');
-			$this->load->view('principal_view');
+              redirect('Blog/principal');
+        
 			}
     	 } 
     		else

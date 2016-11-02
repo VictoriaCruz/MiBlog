@@ -7,6 +7,8 @@ $email = ($this->session->userdata['logged_in']['email']);
 	$usuario_log = '';
 	$email = '';
 }
+
+  $id  = $this->uri->segment(3);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ $email = ($this->session->userdata['logged_in']['email']);
         <div class="container col-lg-12 main">
         <div class="col-lg-12 post">
                 <div class="container">
-
+       
                     <h2><?php echo "$titulo"; ?></h2>
                     <div class="body-text">
                         
@@ -37,17 +39,23 @@ $email = ($this->session->userdata['logged_in']['email']);
                         </div>
 
                         <br/>
-                        
+                       
                     </div>
                         <br/>
                         <p>Gracias por visitar mi Post! <b>Para comentar tienes que inicar sesion</b></p>
                         <hr>
+                        <?php if($usuario_log == $usuario) { ?>
+                           <?php echo form_open('FormularioControlador/mostrar_actualizar');  ?>
+                           <?=form_hidden('id',$this->uri->segment(3));?>
+                          <button type="submit" class="btn btn-info">Actualizar</button>
+                        <?php } ?>
                  <h1> Comentarios </h1>
                  <hr>
+
           
          <div class="comments-list">
          <?php 
-         $id  = $this->uri->segment(3);
+       
          $query = $this->db->where("entry_id","$id");
          $query = $this->db->get('comentarios');
          foreach($query -> result() as $row): ?>
@@ -67,6 +75,7 @@ $email = ($this->session->userdata['logged_in']['email']);
                     <?=form_hidden('id',$this->uri->segment(3));?>
                    <br>
                    <input type="submit" name="comentar" value="Comentar" class="btn btn-info">
+
                    <?php echo form_close();?>
                    </div>
                 </div>

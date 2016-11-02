@@ -11,9 +11,9 @@ class Blog extends CI_Controller
  
     function index()
     {
-        
+        $query = $this->db->get('entry');
         $this->load->view('header');
-        $this->load->view('vista_simple');
+        $this->load->view('vista_simple', ['query' => $query]);
     }
 
     function principal()

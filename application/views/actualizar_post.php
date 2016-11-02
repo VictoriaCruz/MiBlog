@@ -5,7 +5,9 @@ $usuario = ($this->session->userdata['logged_in']['usuario']);
 $email = ($this->session->userdata['logged_in']['email']);
 } else {
 header("location: iniciar_sesion");
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -13,21 +15,16 @@ header("location: iniciar_sesion");
 <head>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/header.css">
- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>    <!-- https://www.tinymce.com/ -->
+ <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>    
 <script>tinymce.init({ selector:'textarea' });</script>
-	<title>Nuevo Post</title>
+	<title>Actualiza tu Post</title>
 </head>
 <body class="body-top">
 
 
-   <div style="position:absolute;left:900px;top:50px">
-    <a href="<?php echo base_url() ?>Blog/principal"><img src="<?php base_url()?>/assets/imagenes/home.png"></a>
-   </div> 
-
-
     <div  style="position:absolute;top:100px;left:200px;">
-   <form method="post" id="nuevoPost" action ="<?php echo base_url() ?>FormularioControlador/insertar_comentarios" enctype="multipart/form-data" >
-  <label class="label">  <?php echo form_fieldset('Nuevo Post');?> </label>
+   <form method="post" id="nuevoPost" action ="<?php echo base_url() ?>FormularioControlador/actualizar_post" enctype="multipart/form-data" >
+  <label class="label">  <?php  echo form_fieldset('Actualiza tu Post');?> </label>
 
       <label class="label" for="titulo">Titulo:</label>
       <input class="form-control" type="text" required="required" name="titulo" id="titulo" minlength="3">
@@ -40,8 +37,9 @@ header("location: iniciar_sesion");
 <br>
      <label class="label" for="imagen">Subir Imagen</label>
      <input type="file" name="imagen">
-     <br>
-     <input class="btn btn-success" type="submit" name="enviar" value="Postear">
+     <br>  
+     <input  type="hidden" name="id" value="<?php echo $id;?>" >
+     <input class="btn btn-success" type="submit" name="enviar" value="Actualizar">
       
  <?php echo form_fieldset_close();   ?> 
       
@@ -59,4 +57,4 @@ header("location: iniciar_sesion");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
   <script src="<?php echo base_url() ?>assets/js/nuevopost.js"></script>
 </body>
-</html>
+</html>   

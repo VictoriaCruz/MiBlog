@@ -39,6 +39,26 @@ class Db_model extends CI_Model{
        return $this->db->insert($tabla,$datos);
     }
 
+ 
+    public function actualizar_post($data,$misma_id)
+    {
+        $id = $misma_id;
+        $titulo = $data['entry_name'];
+        $desc = $data['description'];
+        $contenido = $data['entry_body'];
+        $img = $data['img'];
+
+       return  $this->db->query("UPDATE entry  
+                            SET entry_name =  '".$titulo."' ,
+                                description= '".$desc."',
+                                entry_body = '".$contenido."',
+                              img = '".$img."' 
+                             WHERE  entry_id =  '".$id."' ");
+
+
+          }
+     
+
    
 
     
