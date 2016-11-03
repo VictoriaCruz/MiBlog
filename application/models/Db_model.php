@@ -25,6 +25,15 @@ class Db_model extends CI_Model{
     } 
 
 
+    public function obtener_comment($id ='')
+    {
+
+        
+         $result = $this->db->query("SELECT * FROM comentarios WHERE entry_id = '".$id."'");
+         return $result->result();
+    }
+
+
     public function obtener_id($usuario,$titulo)
     {
 
@@ -38,6 +47,7 @@ class Db_model extends CI_Model{
     {
        return $this->db->insert($tabla,$datos);
     }
+
 
  
     public function actualizar_post($data,$misma_id)
@@ -56,7 +66,7 @@ class Db_model extends CI_Model{
                              WHERE  entry_id =  '".$id."' ");
 
 
-          }
+   }
      
 
    

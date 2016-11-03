@@ -9,8 +9,8 @@ $email = ($this->session->userdata['logged_in']['email']);
 }
 
   $id  = $this->uri->segment(3);
-?>
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@ $email = ($this->session->userdata['logged_in']['email']);
             <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/posts.css"">
-	<title> <?php echo "$titulo"; ?> </title>
+	<title> <?php echo $post->entry_name; ?> </title>
 </head>
 <body>
   
@@ -27,15 +27,15 @@ $email = ($this->session->userdata['logged_in']['email']);
         <div class="col-lg-12 post">
                 <div class="container">
        
-                    <h2><?php echo "$titulo"; ?></h2>
+                    <h2><?php echo $post->entry_name; ?></h2>
                     <div class="body-text">
                         
-                        <p class='text-muted ubuntu'>Por: <?php echo $usuario; ?> | <?php echo "$fecha"; ?></p>
+                        <p class='text-muted ubuntu'>Por: <?php echo $post->user; ?> | <?php echo $post->date; ?></p>
                         <br>
-                          <p><?php echo "$descripcion";?></p>
+                          <p><?php echo $post->description;?></p>
                         <div class="row">
-                            <div class="col-lg-6"><p><?php echo "$contenido"; ?></p></div>
-                            <div class="col-lg-6" id='img'><p class=""><?php echo strlen($img) == 0 ? '' : "<img alt='image' src='http://proyectoprueba.com/upload/".$img."' width='100%'>"; ?></p></div>
+                            <div class="col-lg-6"><p><?php echo $post->entry_body; ?></p></div>
+                            <div class="col-lg-6" id='img'><p class=""><?php echo strlen($post->img) == 0 ? '' : "<img alt='image' src='http://proyectoprueba.com/upload/".$post->img."' width='100%'>"; ?></p></div>
                         </div>
 
                         <br/>
@@ -44,30 +44,27 @@ $email = ($this->session->userdata['logged_in']['email']);
                         <br/>
                         <p>Gracias por visitar mi Post! <b>Para comentar tienes que inicar sesion</b></p>
                         <hr>
-                        <?php if($usuario_log == $usuario) { ?>
+                        <?php if($usuario_log == $post->user) { ?>
                            <?php echo form_open('FormularioControlador/mostrar_actualizar');  ?>
-                           <?=form_hidden('id',$this->uri->segment(3));?>
+                           <?= form_hidden('id',$this->uri->segment(3));?>
                           <button type="submit" class="btn btn-info">Actualizar</button>
                         <?php } ?>
                  <h1> Comentarios </h1>
                  <hr>
 
           
-         <div class="comments-list">
-         <?php 
-       
-         $query = $this->db->where("entry_id","$id");
-         $query = $this->db->get('comentarios');
-         foreach($query -> result() as $row): ?>
-         <div class="media-body">
+         <div class="comments-list"> 
+         <?php     
+         foreach($comments as $row):  ?> 
+        <div class="media-body">
          <h4 class="media-heading user_name"><?php   echo $row-> usuario;?></h4>
-         <?php    echo $row-> comentario; ?>
+         <?php   echo $row-> comentario; ?>
          </div> 
           <p class="pull-right"><small><?php   echo $row-> fecha;?></small></p>  
           <br>
           <?php endforeach; ?>                        
          </div>
-        <br><br>
+        <br><br> 
                    <div>     
                    <?php echo form_open('FormularioControlador/comentar');  ?>
                    <label for="comentario">Comentario:</label>
@@ -76,10 +73,10 @@ $email = ($this->session->userdata['logged_in']['email']);
                    <br>
                    <input type="submit" name="comentar" value="Comentar" class="btn btn-info">
 
-                   <?php echo form_close();?>
+                   <?php echo form_close();?> 
                    </div>
                 </div>
         </div>
-        </div>
-</body>
+        </div> 
+</body> 
 </html>

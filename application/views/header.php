@@ -27,7 +27,7 @@ $email = $this->session->userdata['logged_in']['email'];
     <div class="container">
       <div class="jumbotron">
         <h1>Bienvenido a Blog!</h1>
-        <p class="lead">Hola <?php echo "$usuario";?>, mi nombre es Victoria y aqui podras postear sobre cualquier tema que te llame la atencion, cosas que te gustan, o lo que sea que quieras publicar! Empieza ya :)</p>
+        <p class="lead">Hola <?php echo "<b>$usuario</b>";?>, mi nombre es Victoria y aqui podras postear sobre cualquier tema que te llame la atencion, cosas que te gustan, o lo que sea que quieras publicar! Empieza ya :)</p>
       </div>
     </div>
    

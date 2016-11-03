@@ -34,24 +34,21 @@ class FormularioControlador extends CI_Controller {
   }
  
 
-    public function post($id = '')
+    public function post($id = null)
     {
-      $fila=  $this->db_model->obtener_post($id);
-      if($fila != null){
+      $fila = $this->db_model->obtener_post($id);
+      $comments = $this->db_model->obtener_comment($id);
+      if( ! is_null($fila))
+      {
+      $data['post'] = $fila;
+      $data['comments'] = $comments;
 
-      $data['titulo'] = $fila->entry_name;
-      $data['descripcion']=$fila->description;
-      $data['contenido']=$fila->entry_body;
-      $data['fecha']=$fila->date;
-      $data['usuario']=$fila->user;
-      $data['img']=$fila->img;
-
-      $this->load->view('post',$data);
-    }
-    else
-    {
-     $this->load->view('errorpage');
-    }
+      $this->load->view('post',$data,$comments);
+      }
+     else
+      {
+        $this->load->view('errorpage');
+      }
 
     }
    
@@ -162,7 +159,7 @@ class FormularioControlador extends CI_Controller {
                 }
             
              $misma_id = $this->input->post('id');
-        $data = array (
+             $data = array (
              
             'entry_name' => $this->input->post('titulo'),
             'description'=> $this->input->post('descripcion'),
