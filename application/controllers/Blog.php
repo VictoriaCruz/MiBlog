@@ -24,7 +24,7 @@ class Blog extends CI_Controller
         $this->load->view('principal_view', ['query' => $query]);
     }
 
- 
+    
  
 
     

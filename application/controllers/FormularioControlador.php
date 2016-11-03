@@ -34,7 +34,7 @@ class FormularioControlador extends CI_Controller {
   }
  
 
-    public function post($id = null)
+    public function post($id = '')
     {
       $fila = $this->db_model->obtener_post($id);
       $comments = $this->db_model->obtener_comment($id);
@@ -62,7 +62,9 @@ class FormularioControlador extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE)
 			{ 
-				$this->load->view('nuevo_post');
+        $this->session->set_flashdata('error','Parece que hubo un error');
+        redirect('FormularioControlador/mostrar_formulario','refresh');
+				//$this->load->view('nuevo_post');
 			}
 			//si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
 			else 
@@ -94,8 +96,8 @@ class FormularioControlador extends CI_Controller {
 				 $this->db_model->nuevo_comentario('entry',$data);
 
          $this->email_sender->enviarEmail();
-
-       redirect('Blog/principal');     
+         $this->session->set_flashdata('post','Tu post ya fue publicado');
+       redirect('Blog/principal','refresh');     
       }
                   	
 
@@ -106,12 +108,12 @@ class FormularioControlador extends CI_Controller {
 	public function comentar()
 	{
     
-  		$this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
+  		    $this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
           $id =$this->input->post('id');
           
           if (!isset($this->session->userdata['logged_in'])) {
-
-         redirect('FormularioControlador/post/'.$id); 
+         $this->session->set_flashdata('nopermitido','Lo siento para comentar tienes que iniciar sesion');
+         redirect('FormularioControlador/post/'.$id, 'refresh'); 
       }
            else{     
             $datos = array('entry_id' => $this->input->post('id'),
@@ -122,9 +124,9 @@ class FormularioControlador extends CI_Controller {
             
   		 $this->db_model->comentar('comentarios',$datos);
 
-       $this->email_sender->enviarEmail();
-
-      redirect('FormularioControlador/post/'.$id );
+       //$this->email_sender->enviarEmail();
+       $this->session->set_flashdata('comentar','comentario hecho!');
+      redirect('FormularioControlador/post/'.$id ,'refresh');
   		}
 
    }

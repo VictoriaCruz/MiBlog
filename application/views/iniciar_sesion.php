@@ -46,6 +46,26 @@ header("location: http://proyectoprueba.com/FormularioControlador/mostrar_princi
 </div>
 
 
+  <?php  $registrado = $this->session->flashdata('registrado');
+   if($registrado)
+   { ?>
+  <div class="alert alert-success">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_iniciar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $registrado;?></strong> 
+</div>
+  <?php } ?>
+
+   <?php  $incorrectos = $this->session->flashdata('incorrectos');
+   if($incorrectos)
+   { ?>
+  <div class="alert alert-danger">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_iniciar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $incorrectos;?></strong> 
+</div>
+  <?php } ?>
+
+
+
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

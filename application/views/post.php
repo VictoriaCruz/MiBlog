@@ -22,12 +22,35 @@ $email = ($this->session->userdata['logged_in']['email']);
 	<title> <?php echo $post->entry_name; ?> </title>
 </head>
 <body>
-  
+      <?php  $comentar = $this->session->flashdata('comentar');
+   if($comentar)
+   { ?>
+  <div class="alert alert-success">
+   <a  class="close" data-dismiss="alert" aria-label="close" href="<?= base_url();?>FormularioControlador/post/<?= $id;?>">&times;</a>
+  <strong><?= $comentar;?></strong> 
+</div>
+  <?php } ?>
+
+    <?php  $nopermitido = $this->session->flashdata('nopermitido');
+   if($nopermitido)
+   { ?>
+  <div class="alert alert-danger">
+   <a id="nopermitido" href="<?= base_url();?>FormularioControlador/post/<?= $id;?>" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $nopermitido;?></strong> 
+</div>
+  <?php } ?>
         <div class="container col-lg-12 main">
         <div class="col-lg-12 post">
                 <div class="container">
        
-                    <h2><?php echo $post->entry_name; ?></h2>
+              <h2><?php echo $post->entry_name; ?></h2>
+              <div style="position:absolute; left:1000px;top:10px;"><?php if (isset($this->session->userdata['logged_in'])) 
+                    { ?>
+                     <a href="<?php echo base_url() ?>Blog/principal"><img src="<?php base_url()?>/assets/imagenes/home.png"></a>
+                  <?php  } 
+                    else
+                    { ?>  <a href="<?php echo base_url() ?>Blog/index"><img src="<?php base_url()?>/assets/imagenes/home.png"></a>
+                     <?php } ?></div>
                     <div class="body-text">
                         
                         <p class='text-muted ubuntu'>Por: <?php echo $post->user; ?> | <?php echo $post->date; ?></p>
@@ -42,13 +65,13 @@ $email = ($this->session->userdata['logged_in']['email']);
                        
                     </div>
                         <br/>
-                        <p>Gracias por visitar mi Post! <b>Para comentar tienes que inicar sesion</b></p>
+                        <p>Gracias por visitar mi Post! <b>Para comentar tienes que iniciar sesion</b></p>
                         <hr>
-                        <?php if($usuario_log == $post->user) { ?>
-                           <?php echo form_open('FormularioControlador/mostrar_actualizar');  ?>
-                           <?= form_hidden('id',$this->uri->segment(3));?>
+                        <?php if($usuario_log == $post->user) { 
+                           echo form_open('FormularioControlador/mostrar_actualizar');  
+                            form_hidden('id',$this->uri->segment(3));?>
                           <button type="submit" class="btn btn-info">Actualizar</button>
-                        <?php } ?>
+                        <?php echo form_close(); } ?>
                  <h1> Comentarios </h1>
                  <hr>
 
@@ -62,14 +85,15 @@ $email = ($this->session->userdata['logged_in']['email']);
          </div> 
           <p class="pull-right"><small><?php   echo $row-> fecha;?></small></p>  
           <br>
-          <?php endforeach; ?>                        
+          <?php endforeach; ?> 
+                               
          </div>
         <br><br> 
                    <div>     
                    <?php echo form_open('FormularioControlador/comentar');  ?>
                    <label for="comentario">Comentario:</label>
                    <input type="text" name="comentario" placeholder="opina algo ..." class="form-control">
-                    <?=form_hidden('id',$this->uri->segment(3));?>
+                    <?= form_hidden('id',$this->uri->segment(3));?>
                    <br>
                    <input type="submit" name="comentar" value="Comentar" class="btn btn-info">
 
@@ -78,5 +102,8 @@ $email = ($this->session->userdata['logged_in']['email']);
                 </div>
         </div>
         </div> 
+    
+
+
 </body> 
 </html>

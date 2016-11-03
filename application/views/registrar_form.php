@@ -38,6 +38,23 @@
     </div>
 </div>
 
+ <?php  $ocupado = $this->session->flashdata('ocupado');
+   if($ocupado)
+   { ?>
+  <div class="alert alert-warning">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_registrar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $ocupado;?></strong> 
+</div>
+  <?php } ?>
+
+ <?php  $error = $this->session->flashdata('error');
+   if($error)
+   { ?>
+  <div class="alert alert-danger">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_registrar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $error;?></strong> 
+</div>
+  <?php } ?>
 
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"

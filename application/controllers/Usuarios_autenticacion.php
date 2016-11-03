@@ -25,7 +25,9 @@ class Usuarios_autenticacion extends CI_Controller
     {
     	$this->load->view('registrar_form');
     }
+   
 
+ 
 
 	
 
@@ -37,8 +39,10 @@ class Usuarios_autenticacion extends CI_Controller
 
 		if($this->form_validation->run() == FALSE)
 		{    
-			$data['message_display'] = 'Parece que hubo un error';
-			 $this->load->view('registrar_form',$data);  //mostrar el form para registrarse de nuevo
+			//$data['message_display'] = 'Parece que hubo un error';
+			$this->session->set_flashdata('error','Parece que hubo un error, verifica los campos');
+			redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
+			// $this->load->view('registrar_form',$data);  //mostrar el form para registrarse de nuevo
 		}
 		else
 		{
@@ -51,13 +55,14 @@ class Usuarios_autenticacion extends CI_Controller
 
 			if($result == TRUE)
 			{
-				$data['message_display'] = 'Registrado!';
-				$this->load->view('iniciar_sesion',$data);  //mostrar el form para iniciar sesion
+				$this->session->set_flashdata('registrado','Registrado!');
+                redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
+				
 			}
 			else
-			{
-				$data['message_display'] = 'oops.. ya existe un usuario asi';
-				$this->load->view('registrar_form',$data);
+			{   $this->session->set_flashdata('ocupado','Oops.. parece que ya hay alguien registrado asi');
+				redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
+				
 			}
 		}
 	}
@@ -77,7 +82,9 @@ class Usuarios_autenticacion extends CI_Controller
            
 		    }
 			else{
-			$this->load->view('iniciar_sesion');
+				
+		 		$this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
+		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
 			}
 		} 
 		else
@@ -105,9 +112,10 @@ class Usuarios_autenticacion extends CI_Controller
     	 } 
     		else
 		 	{
-			$data = array(
-			'error_message' => 'Usuario o Contraseña incorrectos');
-			$this->load->view('iniciar_sesion', $data);
+			
+		 		$this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
+		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
+			
 			}
 		}
 		
