@@ -20,6 +20,15 @@ header("location: iniciar_sesion");
 <body class="body-top">
 
 
+  <?php  $error = $this->session->flashdata('error');
+   if($error)
+   { ?>
+  <div class="alert alert-danger">
+   <a href="<?php echo base_url() ?>FormularioControlador/mostrar_formulario" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $error;?></strong> 
+</div>
+  <?php } ?>
+
    <div style="position:absolute;left:900px;top:50px">
     <a href="<?php echo base_url() ?>Blog/principal"><img src="<?php base_url()?>/assets/imagenes/home.png"></a>
    </div> 

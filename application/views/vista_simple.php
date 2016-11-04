@@ -18,7 +18,7 @@
  <div class="container">
 <div class="col-md-12">
   <?php 
-      $query  = $this->db->get('entry');
+     // $query  = $this->db->get('entry');
     foreach ($query -> result() as $row) :?> 
       <h1><a href="<?php echo base_url() ?>FormularioControlador/post/<?= $row-> entry_id?>"><?php echo $row -> entry_name;?></a></h1>
       <br>       

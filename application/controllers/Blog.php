@@ -10,16 +10,16 @@ class Blog extends CI_Controller
     }
  
     function index()
-    {
-        $query = $this->db->get('entry');
+    {  
+        $query = $this->Db_model->ver_posts();
         $this->load->view('header');
         $this->load->view('vista_simple', ['query' => $query]);
     }
 
     function principal()
 
-    {
-        $query = $this->db->get('entry');
+    {   
+        $query = $this->Db_model->ver_posts();
         $this->load->view('header');
         $this->load->view('principal_view', ['query' => $query]);
     }

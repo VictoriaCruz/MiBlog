@@ -95,7 +95,7 @@ class FormularioControlador extends CI_Controller {
 
 				 $this->db_model->nuevo_comentario('entry',$data);
 
-         $this->email_sender->enviarEmail();
+       //  $this->email_sender->enviarEmail();
          $this->session->set_flashdata('post','Tu post ya fue publicado');
        redirect('Blog/principal','refresh');     
       }
@@ -107,7 +107,6 @@ class FormularioControlador extends CI_Controller {
 
 	public function comentar()
 	{
-    
   		    $this->form_validation->set_rules('comentario','Comentario','trim|required|xss_clean');
           $id =$this->input->post('id');
           
@@ -120,7 +119,6 @@ class FormularioControlador extends CI_Controller {
             	             'comentario' => $this->input->post('comentario'),
             	             'usuario' =>  $this->session->userdata['logged_in']['usuario'],
             	             'fecha' => DATE('Y-m-d'));
-
             
   		 $this->db_model->comentar('comentarios',$datos);
 
@@ -128,8 +126,7 @@ class FormularioControlador extends CI_Controller {
        $this->session->set_flashdata('comentar','comentario hecho!');
       redirect('FormularioControlador/post/'.$id ,'refresh');
   		}
-
-   }
+  }
 
 
     public function actualizar_post()   //metodo para que se puede actualizar un post
@@ -140,7 +137,10 @@ class FormularioControlador extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE)
       { 
-        $this->load->view('actualizar_post');
+
+        $this->session->set_flashdata('error','Ocurrio algo,verifica porfavor');
+        redirect('FormularioControlador/mostrar_actualizar','refresh');
+        //$this->load->view('actualizar_post');
       }
       //si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
       else 
@@ -154,7 +154,6 @@ class FormularioControlador extends CI_Controller {
                 if (!($this->upload->do_upload('imagen')))
                 {
                         $error =  $this->upload->display_errors();
-                      //echo $error;
                 }
                 else{
                          $this->upload->data('file_name');         
@@ -169,7 +168,7 @@ class FormularioControlador extends CI_Controller {
             'img' =>$this->upload->data('file_name'));  
 
          $this->db_model->actualizar_post($data,$misma_id);
-
+         $this->session->set_flashdata('actualizado','Tu post fue actualizado');
        redirect('Blog/principal');     
       }
                     

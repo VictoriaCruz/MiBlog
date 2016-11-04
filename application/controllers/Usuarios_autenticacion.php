@@ -35,12 +35,14 @@ class Usuarios_autenticacion extends CI_Controller
 	{
 		$this->form_validation->set_rules('usuario','Usuario','trim|required|min_length[3]');
 		$this->form_validation->set_rules('password','Password','trim|required|min_length[5]');
-		$this->form_validation->set_rules('email','Email','trim|required');
+		$this->form_validation->set_rules('email','Email','trim|required|is_unique[usuarios.email]');
+	
+
 
 		if($this->form_validation->run() == FALSE)
 		{    
 			//$data['message_display'] = 'Parece que hubo un error';
-			$this->session->set_flashdata('error','Parece que hubo un error, verifica los campos');
+			$this->session->set_flashdata('error','Oops.. parece que ya hay alguien registrado asi o la informacion esta incompleta');
 			redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
 			// $this->load->view('registrar_form',$data);  //mostrar el form para registrarse de nuevo
 		}
@@ -60,7 +62,8 @@ class Usuarios_autenticacion extends CI_Controller
 				
 			}
 			else
-			{   $this->session->set_flashdata('ocupado','Oops.. parece que ya hay alguien registrado asi');
+			{   
+				$this->session->set_flashdata('ocupado','Oops.. intenta un usuario o password diferentes');
 				redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
 				
 			}

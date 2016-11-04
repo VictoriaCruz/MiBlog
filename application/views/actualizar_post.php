@@ -22,6 +22,15 @@ header("location: iniciar_sesion");
 <body class="body-top">
 
 
+  <?php  $error = $this->session->flashdata('error');
+   if($error)
+   { ?>
+  <div class="alert alert-danger">
+   <a href="<?php echo base_url() ?>FormularioControlador/mostrar_actualizar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $error;?></strong> 
+</div>
+  <?php } ?>
+
     <div  style="position:absolute;top:100px;left:200px;">
    <form method="post" id="nuevoPost" action ="<?php echo base_url() ?>FormularioControlador/actualizar_post" enctype="multipart/form-data" >
   <label class="label">  <?php  echo form_fieldset('Actualiza tu Post');?> </label>

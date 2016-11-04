@@ -13,10 +13,10 @@ class Usuario_model extends CI_Model{
 
 		 $user = $data['usuario'];
 		 $pass = $data['password'];
-        
-		 $query = $this->db->where("usuario","$user");
-		 $query = $this->db->where("password", "$pass");
-		 $query = $this->db->get("usuarios");
+		
+        $where = "usuario= '".$user."'  OR password='".$pass."' ";
+		 $this->db->where($where);
+		 $query = $this->db->get('usuarios');
 		
 
 		if($query->num_rows() == 0)
@@ -29,9 +29,6 @@ class Usuario_model extends CI_Model{
 			{
 				return FALSE;
 			}
-		
-
-
 	}
 
 	public function login($data)

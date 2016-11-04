@@ -17,6 +17,25 @@ header("location: iniciar_sesion");
 </head>
 <body>
 
+  <?php  $post = $this->session->flashdata('post');
+   if($post)
+   { ?>
+  <div class="alert alert-success">
+   <a href="<?php echo base_url() ?>Blog/principal" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $post;?></strong> 
+</div>
+  <?php } ?>
+
+
+  <?php  $actualizado = $this->session->flashdata('actualizado');
+   if($actualizado)
+   { ?>
+  <div class="alert alert-success">
+   <a href="<?php echo base_url() ?>Blog/principal" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $actualizado;?></strong> 
+</div>
+  <?php } ?>
+
  <div class="menu">
  <label class="label label-info">Salir? <a href="<?php echo base_url() ?>Usuarios_autenticacion/logout"> Cerrar sesi&oacute;n </a></label>
  <label class="label label-info">Crea un nuevo post! <a href="<?php echo base_url() ?>FormularioControlador/mostrar_formulario">Click aqui</a></label>

@@ -7,6 +7,7 @@ class Db_model extends CI_Model{
     public function __construct()
     {
         parent::__construct();
+
     }
 
     function nuevo_comentario($tabla,$comentario)
@@ -23,6 +24,14 @@ class Db_model extends CI_Model{
 
        return $result->row();
     } 
+
+    public function ver_posts()
+    {
+       $this->db->select('*');      
+       $this->db->from('entry');
+       $this->db->order_by('date','desc');
+       return $this->db->get();
+    }
 
 
     public function obtener_comment($id ='')
