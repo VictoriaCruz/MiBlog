@@ -21,6 +21,10 @@
   <input type="text" placeholder="Nombre de Usuario" name="usuario" id="usuario" minlength="3" />
   <input type="password" placeholder="Pon una Contrase&ntilde;a" name="password" id="password" minlength="5" />
   <input type="email" placeholder="Tu Email" name="email" id="email" />
+  <br><br><br>
+  <label class="secreta" >Por seguridad provee una palabra secreta para tu cuenta</label>
+  <input type="password" name="secreta" id="secreta" minlength="5">
+  <br>
   <input type="submit" value="Registrar" class="btn btn-danger btn-sm" name="submit" />
   
   <div class="row">
@@ -61,6 +65,7 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+   <script src ="http://ajax.microsoft.com/ajax/jquery.validate/1.7/additional-methods.js"></script>
   <script src="<?php echo base_url() ?>assets/js/signup.js"></script>
 </body>
 </html>

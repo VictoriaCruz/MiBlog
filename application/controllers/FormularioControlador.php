@@ -29,8 +29,17 @@ class FormularioControlador extends CI_Controller {
      $id =$this->input->post('id');
      $data = array(
                  'id'=> $id);
-    $this->load->view('actualizar_post',$data);
-  
+     $fila = $this->db_model->obtener_post($id);
+     
+     if(!is_null($fila))
+     {
+      $data['fila'] = $fila;
+      $this->load->view('actualizar_post',$data,$fila);
+     }
+     else
+     {
+      $this->load->view('errorpage');
+     }
   }
  
 
@@ -140,9 +149,7 @@ class FormularioControlador extends CI_Controller {
 
         $this->session->set_flashdata('error','Ocurrio algo,verifica porfavor');
         redirect('FormularioControlador/mostrar_actualizar','refresh');
-        //$this->load->view('actualizar_post');
       }
-      //si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
       else 
       {
                 $config['upload_path'] = 'upload/';
@@ -175,5 +182,8 @@ class FormularioControlador extends CI_Controller {
 
 
     }
+
+
+
 }
 ?>

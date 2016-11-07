@@ -68,8 +68,8 @@ $email = ($this->session->userdata['logged_in']['email']);
                         <p>Gracias por visitar mi Post! <b>Para comentar tienes que iniciar sesion</b></p>
                         <hr>
                         <?php if($usuario_log == $post->user) { 
-                           echo form_open('FormularioControlador/mostrar_actualizar');  
-                            form_hidden('id',$this->uri->segment(3));?>
+                           echo form_open('FormularioControlador/mostrar_actualizar');  ?>
+                            <?=form_hidden('id',$this->uri->segment(3));?>
                           <button type="submit" class="btn btn-info">Actualizar</button>
                         <?php echo form_close(); } ?>
                  <h1> Comentarios </h1>

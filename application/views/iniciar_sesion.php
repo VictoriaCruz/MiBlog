@@ -36,6 +36,11 @@ header("location: http://proyectoprueba.com/FormularioControlador/mostrar_princi
  <?php echo anchor('Usuarios_autenticacion/mostrar_registrar','No estas registrado? Haz click aqui'); ?>
  </label>
  </div>
+  <div class="col-md-6">
+ <label>
+ <?php echo anchor('Usuarios_autenticacion/recuperar_pass',' Olvide mi contrase&ntilde;a?'); ?>
+ </label>
+ </div>
                        
  </div>
   </div>

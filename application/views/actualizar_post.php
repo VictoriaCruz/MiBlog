@@ -5,9 +5,9 @@ $usuario = ($this->session->userdata['logged_in']['usuario']);
 $email = ($this->session->userdata['logged_in']['email']);
 } else {
 header("location: iniciar_sesion");
-
+ 
 }
-
+$img = $fila->img;
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ header("location: iniciar_sesion");
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/header.css">
  <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>    
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>tinymce.init({ selector:'textarea' });</script> 
 	<title>Actualiza tu Post</title>
 </head>
 <body class="body-top">
@@ -34,18 +34,18 @@ header("location: iniciar_sesion");
     <div  style="position:absolute;top:100px;left:200px;">
    <form method="post" id="nuevoPost" action ="<?php echo base_url() ?>FormularioControlador/actualizar_post" enctype="multipart/form-data" >
   <label class="label">  <?php  echo form_fieldset('Actualiza tu Post');?> </label>
-
       <label class="label" for="titulo">Titulo:</label>
-      <input class="form-control" type="text" required="required" name="titulo" id="titulo" minlength="3">
+      <input class="form-control" type="text" required="required" value='<?php echo $fila->entry_name; ?>' name="titulo" id="titulo"  minlength="3">
       <br>
       <label class="label" for="Descripcion">Dinos de que tratara tu post</label>
-      <input type="text" name="descripcion" required="required" class="form-control" placeholder="Da una breve descripcion" id="descripcion" minlength="15">
+      <input type="text" name="descripcion" required="required" value='<?php echo $fila->description; ?>' class="form-control"  id="descripcion" minlength="15">
       <br>
       <label class="label" for="comentario">Contenido:</label>
-      <textarea name="textComentario" required="required" rows="15" cols="70" id="textComentario" > </textarea>
-<br>
+      <textarea name="textComentario"  required="required"  rows="15" cols="70" id="textComentario"  ><?php echo $fila->entry_body; ?> </textarea>
+<br>  
      <label class="label" for="imagen">Subir Imagen</label>
-     <input type="file" name="imagen">
+     <input type="file" name="imagen" >
+     
      <br>  
      <input  type="hidden" name="id" value="<?php echo $id;?>" >
      <input class="btn btn-success" type="submit" name="enviar" value="Actualizar">
@@ -53,9 +53,8 @@ header("location: iniciar_sesion");
  <?php echo form_fieldset_close();   ?> 
       
  </form>
- 
  </div>
-
+<?php echo strlen($fila->img) == 0 ? '' : "<div style='position:absolute;top:900px;left:600px;'><img alt='image' src='http://proyectoprueba.com/upload/".$fila->img."' width='15%' height='15%'><label class='anuncio'>NOTA:si ya tienes una imagen, seleccionala de nuevo</label></div>"; ?>
  
 
 

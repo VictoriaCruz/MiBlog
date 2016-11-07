@@ -22,6 +22,15 @@
   top:360px;
 }
 
-    
+    .anuncio{
+      font-style: bold;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    outline: 0;
+    background-color: #F78181;
+
+    }
     
 

@@ -105,3 +105,13 @@ form.login a:hover
     z-index: 999;
     display: none;
 }
+
+.secreta
+{
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+     font-family: 'Open Sans' , sans-serif;
+     text-transform: uppercase;
+}

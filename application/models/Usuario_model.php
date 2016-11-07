@@ -69,6 +69,41 @@ class Usuario_model extends CI_Model{
 		}
 	}
 
+	public function recuperar($data)
+	{
+
+		$correo = $data['email'];
+		$secreta = $data['secreta'];
+
+		
+		 $query = $this->db->where("email","$correo");
+		 $query = $this->db->where("secreta", "$secreta");
+		 $query = $this->db->get("usuarios");
+
+		if ($query->num_rows() == 1) 
+		{
+		$pass = $this->db->query("SELECT password from usuarios where email = '".$correo."' and secreta ='".$secreta."'");
+		return $pass->result();
+		} 
+		else {
+		return FALSE;
+		}
+	}
+
+
+	public function traer_hash($user){
+     $query = $this->db->query("SELECT password from usuarios where usuario = '".$user."' ");
+
+     if($query->num_rows() == 1)
+     {
+     	return $query->row();
+     }
+     else
+     {
+     	return false;
+     }
+
+	}
 
 
 }
