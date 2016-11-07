@@ -2,7 +2,7 @@
 if (isset($this->session->userdata['logged_in'])) 
 {
 $usuario = $this->session->userdata['logged_in']['usuario'];
-$email = $this->session->userdata['logged_in']['email'];
+
 } else {
 	$usuario = '';
 	$email = '';

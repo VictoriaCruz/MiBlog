@@ -35,16 +35,16 @@ class Usuario_model extends CI_Model{
 	{  
 
 		$user = $data['usuario'];
-		$pass = $data['password'];
+		//$pass = $data['password'];
 
 		
 		 $query = $this->db->where("usuario","$user");
-		 $query = $this->db->where("password", "$pass");
+		// $query = $this->db->where("password", "$pass");
 		 $query = $this->db->get("usuarios");
 
 		if ($query->num_rows() == 1) 
 		{
-		return TRUE;
+		return $query ->result() ;
 		} 
 		else {
 		return FALSE;

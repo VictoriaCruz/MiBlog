@@ -72,16 +72,10 @@ class Usuarios_autenticacion extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) 
 		{
-			if(isset($this->session->userdata['logged_in']))
-			{
-              redirect('Blog/principal');
-           
-		    }
-			else{
-				
+
 		 		$this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
 		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
-			}
+		
 		} 
 		else
 		 {     
@@ -95,43 +89,35 @@ class Usuarios_autenticacion extends CI_Controller
 		 	  if(password_verify($contra,$arreglo))
 		 	  {
 		 	  	
-			 $data = array(
-			'usuario' => $this->input->post('usuario'),	
-			'password' => $this->input->post('password'));
-              
-            
+			 	$data = array(
+				'usuario' => $user);
 
-		$result = $this->Usuario_model->login($data);
+				$result = $this->Usuario_model->login($data);
 	
+                
+				if ($result != false) 
+		 	 	{
+				$session_data = array(
+				'usuario' => $result[0]->usuario);
 
-		if ($result == TRUE) 
-		 {
-
-		$usuario = $this->input->post('usuario');
-		$result = $this->Usuario_model->read_user_information($usuario);
-			if ($result != false) 
-			{
-			$session_data = array(
-			'usuario' => $result[0]->usuario,
-			'email' => $result[0]->email,);
-			// Add user data in session
-			$this->session->set_userdata('logged_in', $session_data);
-              redirect('Blog/principal');
+				$this->session->set_userdata('logged_in', $session_data);
+              	redirect('Blog/principal');
         
-			}
-    	 } 
+			    }
+    	      } 
+    	        $this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
+		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');	 
+    	    }
     		else
 		 	{
-			
 		 		$this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
-		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
-			
+		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');		
 			}
 		}
 	}
-}
+
 		
-	}
+	
 
 	public function logout()
 	{
