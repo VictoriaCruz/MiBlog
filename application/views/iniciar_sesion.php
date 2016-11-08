@@ -68,6 +68,14 @@ header("location: http://proyectoprueba.com/FormularioControlador/mostrar_princi
   <strong><?= $incorrectos;?></strong> 
 </div>
   <?php } ?>
+   <?php  $cambiada= $this->session->flashdata('cambiada');
+   if($cambiada)
+   { ?>
+  <div class="alert alert-success">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_iniciar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $cambiada;?></strong> 
+</div>
+  <?php } ?>
 
 
 

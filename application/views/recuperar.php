@@ -23,14 +23,7 @@
   <strong><?= $datos;?></strong> 
 </div>
   <?php } ?>
-  <?php  $enviado = $this->session->flashdata('enviado');
-   if($enviado)
-   { ?>
-  <div class="alert alert-success">
-   <a href="<?php echo base_url() ?>Usuarios_autenticacion/recuperar_pass" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong><?= $enviado;?></strong> 
-</div>
-  <?php } ?>
+ 
 <div class="container">
 <div class="col-md-12">
 	<h4>Parece que no te acuerdas de tu contrase&ntilde;a</h4>
@@ -40,14 +33,12 @@
 		<input type="email" name="email" class="form-control" id="email">   
 		<br>
 		<label  for="secreta">Palabra secreta:</label>
-		<input type="text" name="secreta" class="form-control"  minlength="5" id="secreta">    <!-- PALABRA SECRETA PEDIRLA EN EL REGISTRO-->
+		<input type="password" name="secreta" class="form-control"  minlength="5" id="secreta"> <!-- PALABRA SECRETA PEDIRLA EN EL REGISTRO-->
 		<br>
 		<input type="submit" name="enviar" value="Enviar">
-		<label>Se enviara un email a tu correo con tu contrase&ntilde;a</label>
+	<!--	<label>Se enviara un email a tu correo con tu contrase&ntilde;a</label>  -->
 	</form>
-	<label>
- <?php echo anchor('Usuarios_autenticacion/mostrar_iniciar','Inicia Sesion aqui'); ?>
- </label>
+
 </div>
 </div>
 

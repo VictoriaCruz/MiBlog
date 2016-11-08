@@ -22,7 +22,7 @@
   <input type="password" placeholder="Pon una Contrase&ntilde;a" name="password" id="password" minlength="5" />
   <input type="email" placeholder="Tu Email" name="email" id="email" />
   <br><br><br>
-  <label class="secreta" >Por seguridad provee una palabra secreta para tu cuenta</label>
+  <p class="secreta" >Por seguridad provee una palabra secreta para tu cuenta</p>
   <input type="password" name="secreta" id="secreta" minlength="5">
   <br>
   <input type="submit" value="Registrar" class="btn btn-danger btn-sm" name="submit" />

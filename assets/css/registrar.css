@@ -77,11 +77,17 @@ form.login .remember-forgot
     margin: 10px 0 0 0;
 }
 
-form.login label, form.login a
+ form.login a
 {
-    font-size: 12px;
-    font-weight: 400;
-    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+form.login label{
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFF00;
 }
 
 form.login a

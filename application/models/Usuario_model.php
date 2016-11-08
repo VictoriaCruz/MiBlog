@@ -105,6 +105,17 @@ class Usuario_model extends CI_Model{
 
 	}
 
+	public function nueva_pass($datos)
+	{
+		$correo = $datos['email'];
+		$secret = $datos['secreta'];
+		$pass = $datos['password'];
+		  return $this->db->query("UPDATE usuarios  
+                            SET password =  '".$pass."' 
+                             WHERE  email=  '".$correo."' and secreta = '".$secret."' ");
+
+	}
+
 
 }
 ?>

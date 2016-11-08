@@ -25,6 +25,11 @@ class Usuarios_autenticacion extends CI_Controller
     	$this->load->view('recuperar');
     }
 
+    public function nueva_pass($data)
+    {
+    	$this->load->view('nueva_pass',$data);
+    }
+
 	public function registrar_nuevo()
 	{
 		$this->form_validation->set_rules('usuario','Usuario','trim|required|min_length[3]');
@@ -105,12 +110,12 @@ class Usuarios_autenticacion extends CI_Controller
         
 			    }
     	      } 
-    	        $this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
+    	        $this->session->set_flashdata('incorrectos','error');
 		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');	 
     	    }
     		else
 		 	{
-		 		$this->session->set_flashdata('incorrectos','Usuario o password incorrectos');
+		 		$this->session->set_flashdata('incorrectos','error2');
 		 		redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');		
 			}
 		}
@@ -145,28 +150,56 @@ class Usuarios_autenticacion extends CI_Controller
 			$data = array(
 			'email' => $this->input->post('email'),
 			'secreta' => $this->input->post('secreta'));
-
+            
 			$result = $this->Usuario_model->recuperar($data);
 			
-
+            
 			if($result == false)
 			{
-				 $this->session->set_flashdata('datos','Esos datos no estan registrados');
+			$this->session->set_flashdata('datos','Esos datos no estan registrados');
 		 	redirect('Usuarios_autenticacion/recuperar_pass','refresh');
 			}
 			else
 			{
-           $pass = array(
-				         'password'=>$result[0]->password);
-
-               $this->email_sender->enviarPass($pass);
-
-			$this->session->set_flashdata('enviado','El correo fue enviado');
-		 	redirect('Usuarios_autenticacion/recuperar_pass','refresh');
+           		$this->load->view('nueva_pass',$data);
 			}
 		}
 
                
+	}
+
+	public function nueva_contra()
+	{
+        	$this->form_validation->set_rules('password','Password','trim|required|min_length[5]');
+
+        	if($this->form_validation->run() == FALSE)
+        	{
+        		$this->session->set_flashdata('incorrectos','Verifica los datos que pusiste');
+		 	   redirect('Usuarios_autenticacion/nueva_pass','refresh');
+        	}
+        	else
+        	{
+        		$datos =array(
+        			'password'=> password_hash($this->input->post('password'),PASSWORD_BCRYPT),
+        			'email' => $this->input->post('correo'),
+			        'secreta' => $this->input->post('secret'));
+                
+        		$result = $this->Usuario_model->nueva_pass($datos);
+
+        		if(is_null($result))
+        		{
+        			$this->session->set_flashdata('error','Intentalo de nuevo');
+		 	        redirect('Usuarios_autenticacion/nueva_pass','refresh');
+        			
+        		}
+        		else
+        		{
+        			$this->session->set_flashdata('cambiada','Password reestablecido, inicia sesion');
+		 	       redirect('Usuarios_autenticacion/mostrar_iniciar','refresh');
+        			
+        		}
+
+        	}
 	}
 
 		

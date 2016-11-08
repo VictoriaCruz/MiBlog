@@ -53,7 +53,7 @@ $img = $fila->img;
       
  </form>
  </div>
-<?php echo strlen($fila->img) == 0 ? '' : "<div style='position:absolute;top:900px;left:600px;'><img alt='image' src='http://proyectoprueba.com/upload/".$fila->img."' width='15%' height='15%'><label class='anuncio'>NOTA:si ya tienes una imagen, seleccionala de nuevo</label></div>"; ?>
+<?php echo strlen($fila->img) == 0 ? '' : "<div style='position:absolute;top:900px;left:600px;'><img alt='image' src='http://proyectoprueba.com/upload/".$fila->img."' width='15%' height='15%'></div>"; ?>
  
 
 
