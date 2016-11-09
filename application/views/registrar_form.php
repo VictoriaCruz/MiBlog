@@ -56,10 +56,21 @@
    { ?>
   <div class="alert alert-danger">
    <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_registrar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong><?= $error;?></strong> 
+  <strong><?= $error;  ?></strong> 
 </div>
   <?php } ?>
 
+
+ <?php  $valido = $this->session->flashdata('valido');
+   if($valido)
+   { ?>
+  <div class="alert alert-danger">
+   <a href="<?php echo base_url() ?>Usuarios_autenticacion/mostrar_registrar" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong><?= $valido;  ?></strong> 
+</div>
+  <?php } ?>
+
+   
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

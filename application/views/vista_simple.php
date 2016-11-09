@@ -15,20 +15,19 @@
  </div>
      
 
- <div class="container">
+<div class="container">
 <div class="col-md-12">
   <?php 
-     // $query  = $this->db->get('entry');
-    foreach ($query -> result() as $row) :?> 
+      foreach ($query -> result() as $row) :?> 
       <h1><a href="<?php echo base_url() ?>FormularioControlador/post/<?= $row-> entry_id?>"><?php echo $row -> entry_name;?></a></h1>
       <br>       
-    <p><?php echo $row -> description;?></p>
-    <div>
+      <p><?php echo $row -> description;?></p>
+<div>
 <span class="badge">Por: <?php echo $row -> user;?> </span>
 <div class="pull-right"><span class="label label-success"> <?php echo $row -> date;?></span> </div>         
-     </div>
-    <hr>
-    <?php  endforeach;?>
+</div>
+      <hr>
+      <?php  endforeach;?>
 </div>
 </div>
 </body>

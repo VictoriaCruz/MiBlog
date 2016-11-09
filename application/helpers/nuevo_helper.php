@@ -1,13 +1,26 @@
 <?php
 if( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if(! function_exists('all_usuarios') )
+
+
+if(! function_exists('checar_password') )
 {
-	function all_usuarios()
-	{
-        $ci =& get_instance();
-		$query = $ci->db->get('usuarios');
-		return $query->result();
+	function checar_password($password)
+	{   
+
+		 if (preg_match('/[^a-zA-Z0-9\-_]/', $password)) 
+		 { 
+      	  return 0; 
+  		 } 
+  		  else 
+  		 { 
+          return 1; 
+   		 }
+   		//return preg_match('/[^a-zA-Z0-9\-_]/', $password);
 	}
 }
+
+
+
+
 ?>

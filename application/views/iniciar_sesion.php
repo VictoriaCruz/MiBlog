@@ -40,14 +40,13 @@ header("location: http://proyectoprueba.com/FormularioControlador/mostrar_princi
  <label>
  <?php echo anchor('Usuarios_autenticacion/recuperar_pass',' Olvide mi contrase&ntilde;a?'); ?>
  </label>
- </div>
-                       
- </div>
-  </div>
- </form>
+ </div>                      
 </div>
 </div>
-    </div>
+</form>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -78,13 +77,13 @@ header("location: http://proyectoprueba.com/FormularioControlador/mostrar_princi
   <?php } ?>
 
 
-
+<!--
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
-  <script src="<?php echo base_url() ?>assets/js/login.js"></script>
-
+  <script src="<?php // echo base_url() ?>assets/js/login.js"></script>
+-->
 </body>
 </html>

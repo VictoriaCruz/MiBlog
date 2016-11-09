@@ -9,6 +9,7 @@ class FormularioControlador extends CI_Controller {
 		parent::__construct();
     $this->load->library('email_sender');
 		$this->load->model('db_model');
+
 	}
 
 	public function mostrar_formulario()
@@ -73,7 +74,7 @@ class FormularioControlador extends CI_Controller {
 			{ 
         $this->session->set_flashdata('error','Parece que hubo un error');
         redirect('FormularioControlador/mostrar_formulario','refresh');
-				//$this->load->view('nuevo_post');
+			
 			}
 			//si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
 			else 
@@ -87,7 +88,7 @@ class FormularioControlador extends CI_Controller {
                 if (!($this->upload->do_upload('imagen')))
                 {
                         $error =  $this->upload->display_errors();
-                      //echo $error;
+                      
                 }
                 else{
                          $this->upload->data('file_name');         

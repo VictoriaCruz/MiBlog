@@ -8,6 +8,7 @@ class Usuarios_autenticacion extends CI_Controller
 		parent::__construct();
 		$this->load->model('Usuario_model');
 		$this->load->library('email_sender');
+		
 	}
 
 	public function mostrar_iniciar()
@@ -32,19 +33,32 @@ class Usuarios_autenticacion extends CI_Controller
 
 	public function registrar_nuevo()
 	{
-		$this->form_validation->set_rules('usuario','Usuario','trim|required|min_length[3]');
+        $this->lang->traducir();
+
+            $pass = $this->input->post('password');
+            $result = checar_password($pass);
+
+			if($result == 0)
+        	{
+              $this->session->set_flashdata('valido','Solo letras,numeros, - y _ en el password');			
+			redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
+        	}	
+
+		$this->form_validation->set_rules('usuario','Usuario','trim|required|min_length[3]|letteronly');
 		$this->form_validation->set_rules('password','Password','trim|required|min_length[5]');
 		$this->form_validation->set_rules('email','Email','trim|required|is_unique[usuarios.email]');
 		$this->form_validation->set_rules('secreta','Secreta','trim|required|min_length[5]');
 
 		if($this->form_validation->run() == FALSE)
-		{    
-		
-			$this->session->set_flashdata('error','Oops.. parece que ya hay alguien registrado asi o la informacion esta incompleta');
-			redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );		
-		}
+		{     
+		    $error = validation_errors();
+			$this->session->set_flashdata('error',$error);			
+			redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
+    	}
 		else
-		{
+		{  
+			
+
 			$data  = array(
 				'usuario' => $this->input->post('usuario'),
 				'password' => password_hash($this->input->post('password'),PASSWORD_BCRYPT),
@@ -61,11 +75,15 @@ class Usuarios_autenticacion extends CI_Controller
 			}
 			else
 			{   
-				$this->session->set_flashdata('ocupado','Oops.. intenta un usuario o password diferentes');
+				$this->session->set_flashdata('error','Trata un usuario o password diferente');
 				redirect('Usuarios_autenticacion/mostrar_registrar','refresh' );
 				
 			}
-		}
+
+         }
+        
+
+		
 	}
 
 
